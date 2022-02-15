@@ -3,10 +3,12 @@ package com.practica.response;
 import com.practica.entity.Saludo;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
+@NoArgsConstructor
 public class SaludoResponse {
 	private Long id;
 	
