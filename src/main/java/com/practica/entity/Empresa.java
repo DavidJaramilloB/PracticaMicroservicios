@@ -1,38 +1,35 @@
 package com.practica.entity;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.practica.request.SaludoRequest;
-
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @Entity
-@Table(name = "saludo")
-public class Saludo {
+@Table(name = "empresa")
+public class Empresa {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private Long id;
 	
-	@Column(name = "tipo")
-	private String tipo;
+	@Column(name = "empresa")
+	private String empresa;
 	
-	@Column(name = "saludo")
-	private String saludo;
+	@Column(name = "direccion")
+	private String direccion;
 	
-	public Saludo(SaludoRequest saludoRequest) {
-		this.tipo = saludoRequest.getTipo();
-		this.saludo = saludoRequest.getSaludo();
-	}
+	@OneToMany(mappedBy = "empresa")
+	private List<Persona> empleados;
 }
