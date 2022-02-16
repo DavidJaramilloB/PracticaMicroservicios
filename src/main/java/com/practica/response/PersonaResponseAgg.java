@@ -1,7 +1,6 @@
 package com.practica.response;
 
 import com.practica.entity.Persona;
-import com.practica.entity.Saludo;
 
 import lombok.Getter;
 import lombok.Setter;

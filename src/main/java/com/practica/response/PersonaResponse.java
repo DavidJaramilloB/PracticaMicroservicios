@@ -2,11 +2,8 @@ package com.practica.response;
 
 import org.json.JSONObject;
 
-import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.practica.entity.Persona;
-import com.practica.response.SaludoResponse;
 
-import ch.qos.logback.classic.pattern.Util;
 import lombok.Getter;
 import lombok.Setter;
 

@@ -4,6 +4,8 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -17,17 +19,17 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import com.practica.entity.Persona;
-import com.practica.entity.Saludo;
 import com.practica.request.PersonaRequest;
 import com.practica.response.ErrorResponse;
 import com.practica.response.PersonaResponse;
 import com.practica.response.PersonaResponseAgg;
-import com.practica.response.SaludoResponse;
 import com.practica.service.PersonaService;
 
 @RestController
 @RequestMapping("/api/persona")
 public class PersonaController {
+	
+	Logger logger = LoggerFactory.getLogger(PersonaController.class);
 	
 	@Autowired
 	PersonaService personaService;
@@ -36,6 +38,7 @@ public class PersonaController {
 	public PersonaResponseAgg crearPersona(@RequestBody PersonaRequest personaRequest) {
 		Persona persona = personaService.crearPersona(personaRequest);
 		
+		logger.info("Se agregó una nueva persona.");
 		return new PersonaResponseAgg(persona);
 	}
 	
@@ -80,6 +83,7 @@ public class PersonaController {
 	
 	@ExceptionHandler(DataIntegrityViolationException.class)
 	public ErrorResponse handleDive(DataIntegrityViolationException dive) {
+		logger.error("Error: La persona ya existe");
 		ErrorResponse error = new ErrorResponse();
 		error.setCod("800");
 		error.setMensaje("Esta persona ya existe");
@@ -88,6 +92,7 @@ public class PersonaController {
 	
 	@ExceptionHandler(NullPointerException.class)
 	public ErrorResponse handleNpe(NullPointerException npe) {
+		logger.error("Error: No se conoce la persona");
 		ErrorResponse error = new ErrorResponse();
 		error.setCod("1000");
 		error.setMensaje("Persona Desconocida");
