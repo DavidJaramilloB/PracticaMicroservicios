@@ -37,4 +37,8 @@ public class PersonaService {
 	public List<Persona> getPersonas(){
 		return personaRepository.findAll();
 	}
+	
+	public Persona getByNombre(String nombre) {
+		return personaRepository.findByNombre(nombre);
+	}
 }

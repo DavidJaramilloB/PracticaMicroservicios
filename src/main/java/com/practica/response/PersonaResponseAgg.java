@@ -1,20 +1,14 @@
 package com.practica.response;
 
-import org.json.JSONObject;
-
-import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.practica.entity.Persona;
-import com.practica.response.SaludoResponse;
+import com.practica.entity.Saludo;
 
-import ch.qos.logback.classic.pattern.Util;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class PersonaResponse {
-	
-	private String saludo;			//Rest Template
+public class PersonaResponseAgg {
 	
 	private Long id;
 	
@@ -28,10 +22,7 @@ public class PersonaResponse {
 	
 	private String direccion;
 	
-	public PersonaResponse(Persona persona, String saludo) {
-		JSONObject json = new JSONObject(saludo);
-		this.saludo = json.getString("saludar"); 		//Rest Template
-		
+	public PersonaResponseAgg(Persona persona) {
 		this.id = persona.getId();
 		this.nombre = persona.getNombre();
 		this.apellido = persona.getApellido();

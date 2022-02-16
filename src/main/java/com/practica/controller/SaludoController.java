@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,6 +34,11 @@ public class SaludoController {
 		Saludo saludo = saludoService.createSaludo(saludoRequest);
 		
 		return new SaludoResponse(saludo);
+	}
+	
+	@GetMapping("/ver-saludo/{tipo}")
+	public SaludoResponse getByTipo(@PathVariable String tipo) {
+		return new SaludoResponse(saludoService.getByTipo(tipo));
 	}
 	
 	@GetMapping("/ver-saludos")

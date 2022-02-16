@@ -25,4 +25,8 @@ public class SaludoService {
 	public List<Saludo> getSaludos(){
 		return saludoRepository.findAll();
 	}
+	
+	public Saludo getByTipo(String tipo) {
+		return saludoRepository.findByTipo(tipo);
+	}
 }
